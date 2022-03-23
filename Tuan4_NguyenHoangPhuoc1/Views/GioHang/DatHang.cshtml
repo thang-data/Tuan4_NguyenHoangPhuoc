@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Tuan4_NguyenHoangPhuoc1.Models.GioHang>
+@using Tuan4_NguyenHoangPhuoc1.Models;
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DatHang</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.masach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tensach)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.giaban)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.iSoluong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dThanhtien)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.masach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tensach)
+        </td>
+        <td>
+            <img src=" @item.hinh" width="200" />
+        </td>
+        @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @id = item.masach }))
+        {
+            <td>@String.Format("{ 0:0,0}", item.giaban)Vnd</td>
+            <td>@Html.DisplayFor(modelItem => item.iSoluong)</td>
+            <td>@Html.DisplayFor(modelItem => item.dThanhtien)</td>
+        }
+        @*<td>
+            @Html.DisplayFor(modelItem => item.giaban)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.iSoluong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dThanhtien)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+    </tr>
+}
+    <tr style="font-weight:bold; text-align:right; color:red">
+        <td colspan="3">Số lượng sách :@ViewBag.TongSoLuong</td>
+        <td colspan="4">Số loại sách :@ViewBag.TongSoLuongSanPham</td>
+        <td colspan="5">Tổng tiền : @String.Format("{ 0:0,0}", ViewBag.TongTien)Vnd</td>
+    </tr>
+</table>

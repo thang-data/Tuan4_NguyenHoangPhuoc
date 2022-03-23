@@ -1,0 +1,47 @@
+﻿@model Tuan4_NguyenHoangPhuoc1.Models.KhachHang
+
+@{
+    ViewBag.Title = "Đăng nhập ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DangNhap</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>KhachHang</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for=" tendangnhap">Tên đăng nhập </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tendangnhap, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tendangnhap, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for=" matkhau ">Mật khẩu </label>
+            <div class="col-md-10">
+                <input class="form-control text-box" type="password" />
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Đăng nhập " class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
